@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    include("config.php");
+    include ('../../config/config.php');
 
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         $Studid = $_POST['studid'];
@@ -32,14 +32,14 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style1.css">
+        <link rel="stylesheet" href="../../css/style1.css">
         <title>Sign Up</title>
     </head>
     <body>
         <div class="page">
             <div class="box form-box">
                 <header>Sign Up</header>
-                <form name="spark_system" method="post" action="signupStud.php">
+                <form name="spark_system" method="post" action="../../pages/student/signupStud.php">
                     <div class="field input">
                         <label for="studid">Student ID </label>
                         <input type="text" name="studid" utocomplete="off" required>
@@ -75,7 +75,7 @@
                     </div>
                 </form>
                 <div class="links">
-                    Already a member? <a href="loginEmp.php">Login</a>
+                    Already a member? <a href="../../pages/student/loginStud.php">Login</a>
                 </div>
             </div>
         </div>

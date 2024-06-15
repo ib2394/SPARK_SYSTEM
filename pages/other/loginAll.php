@@ -77,22 +77,22 @@
 
 <body>
     <div class="navb">
-        <a href="mainPage.php">
-        <img class="logo" src="logoParcel.png">
+        <a href="../../pages/other/mainPage.php">
+        <img class="logo" src="../../pictures/logoParcel.png">
         </a>
     </div>
     <h1>Choose your role</h1>
     <div class="container">
-        <a href="loginAdm.php" class="role">
-            <img src="admin.png" alt="Admin Icon">
+        <a href="../../pages/admin/loginAdm.php" class="role">
+            <img src="../../pictures/admin.png" alt="Admin Icon">
             <p>ADMIN</p>
         </a>
-        <a href="loginStud.php" class="role">
-            <img src="customer.png" alt="Student Icon">
+        <a href="../../pages/student/loginStud.php" class="role">
+            <img src="../../pictures/customer.png" alt="Student Icon">
             <p>STUDENT</p>
         </a>
-        <a href="loginEmp.php" class="role">
-            <img src="employee.png" alt="Employee Icon">
+        <a href="../../pages/employee/loginEmp.php" class="role">
+            <img src="../../pictures/employee.png" alt="Employee Icon">
             <p>EMPLOYEE</p>
         </a>
     </div>

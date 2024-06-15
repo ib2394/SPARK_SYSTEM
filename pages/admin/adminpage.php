@@ -1,5 +1,5 @@
 <?php
-    include('config.php');
+    include ('../../config/config.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,6 +78,32 @@
             width: 100px;
             height: 100px;
         }
+        .search{
+            width: 20px;
+        }
+        .box{
+            height: 20px;
+            display: flex;
+            cursor: pointer;
+            padding: 10px 20px;
+            background: #fff;
+            border-radius: 30px;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0 , 0.3)
+        }
+        .box:hover{
+            width: 400px;
+            outline: none;
+            border: none;
+            font-weight: 500;
+            transition: 0.8s;
+            background: transparent;
+        }
+        .box a .fas{
+            color: #1daf;
+            font-size: 18px;
+        }
+
     </style>
 </head>
 <body>
@@ -85,19 +111,19 @@
         ADMIN
     </div>
     <div class="navbar">
-        <img class="logo" src="logo.png" alt="Logo">
+        <img class="logo" src="../../pictures/logoParcel.png" alt="Logo">
         <ul>
-        <li><a href="adminupdate.php"><button type="button">UPDATE</button></a></li>
+        <li><a href="../../pages/admin/adminupdate.php"><button type="button">UPDATE</button></a></li>
             <button type="button">REMOVE</button>
-            <button type="button">SEARCH</button>
+            <button type="../../pages/admin/search.php">SEARCH</button>
             <button type="button">VIEWING</button>
-            <img class="image" src="home.png" alt="Home">
+            <img class="image" src="../pictures/home.png" alt="Home">
         </ul>
     </div>
     <div class="content">
         <h1>WELCOME TO ADMIN PAGE</h1>
         <div class="icon">
-            <img src="admin icon.png" alt="Admin Icon">
+            <img src="../../pictures/admin icon.png" alt="Admin Icon">
         </div>
     </div>
 </body>
