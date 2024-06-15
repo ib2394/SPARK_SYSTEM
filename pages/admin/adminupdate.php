@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include ('../../config/config.php');
 
 // Check if the admin ID is stored in session
 if (isset($_SESSION['adminid'])) {
@@ -215,18 +215,18 @@ if (isset($_SESSION['adminid'])) {
     <div class="banner">
         <h1>Admin</h1>
         <div class="navbar">
-            <img class="logo" src="logo.png" alt="Logo">
+            <img class="logo" src="../../pictures/logo.png" alt="Logo">
             <ul>
-            <li><a href="adminupdate.php"><button type="button">UPDATE</button></a></li>
+            <li><a href="../../pages/admin/adminupdate.php"><button type="button">UPDATE</button></a></li>
                 <button type="button">REMOVE</button>
                 <button type="button">SEARCH</button>
                 <button type="button">VIEWING</button>
-                <img class="image" src="home.png" alt="Home">
+                <img class="image" src="../../pictures/home.png" alt="Home">
             </ul>
         </div>
         </div>
         <div class="form-container">
-            <form action="adminupdate.php" method="post" class="form-grid">
+            <form action="../../pages/admin/adminupdate.php" method="post" class="form-grid">
                 <div class="input-group">
                     <input type="text" name="adminid" required>
                     <label for="adminid">Admin ID :</label>

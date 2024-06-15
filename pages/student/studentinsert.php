@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include ('../../config/config.php');
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // Retrieve the logged-in studid from the session
@@ -245,19 +245,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <div class="banner">
         <h1>STUDENT</h1>
         <div class="navbar">
-            <img class="logo" src="logo.png" alt="Logo">
+            <img class="logo" src="../../pictures/logoParcel.png" alt="Logo">
             <ul>
-                <li><a href="studentinsert.php"><button type="button">ADD PARCEL</button></a></li>
-                <li><a href="studentupdate.php"><button type="button">EDIT PARCEL</button></a></li>
+                <li><a href="../../pages/student/studentinsert.php"><button type="button">ADD PARCEL</button></a></li>
+                <li><a href="../../pages/student/studentupdate.php"><button type="button">EDIT PARCEL</button></a></li>
                 <button type="button">REMOVE</button>
                 <button type="button">SEARCH</button>
                 <button type="button">VIEWING</button>
-                <img class="image" src="home.png" alt="Home">
+                <img class="image" src="../../pictures/home.png" alt="Home">
             </ul>
         </div>
     </div>
     <div class="form-container">
-        <form action="studentinsert.php" method="post" class="form-grid">
+        <form action="../../pages/student/studentinsert.php" method="post" class="form-grid">
             <div class="input-group">
                 <input type="text" name="parcelid" required>
                 <label for="parcelid">Parcel ID :</label>

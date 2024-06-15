@@ -11,7 +11,7 @@
     <?php
     // Start PHP session and include config
     session_start();
-    include("config.php");
+    include ('../../config/config.php');
 
     if (isset($_SESSION['empid'])) {
         $empid = $_SESSION['empid'];

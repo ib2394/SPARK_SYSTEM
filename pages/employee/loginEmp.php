@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include("config.php");
+include ('../../config/config.php');
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $empid = $_POST['empid'];
@@ -37,14 +37,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style1.css">
+        <link rel="stylesheet" href="../../css/style1.css">
         <title>Login</title>
     </head>
     <body>
         <div class="page">
             <div class="box form-box">
                 <header>Employee Login</header>
-                <form action="loginEmp.php" method="POST">
+                <form action="../../pages/employee/loginEmp.php" method="POST">
 
                     <div class="field input">
                         <label>Employee ID </label>
@@ -60,7 +60,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                         <input type="submit" class="btn"name="submit" value="Login" required>
                     </div>
                     <div class="links">
-                        Don't have account? <a href="signupEmp.php">Sign Up</a>
+                        Don't have account? <a href="../../pages/employee/signupEmp.php">Sign Up</a>
                     </div>
                 </form>
             </div>

@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    include("config.php");
+    include ('../../config/config.php');
 
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         $Admid = $_POST['admid'];
@@ -29,14 +29,14 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style1.css">
+        <link rel="stylesheet" href="../../css/style1.css">
         <title>Sign Up</title>
     </head>
     <body>
         <div class="page">
             <div class="box form-box">
                 <header>Sign Up</header>
-                <form name="spark_system" method="post" action="signupAdm.php">
+                <form name="spark_system" method="post" action="../../pages/admin/signupAdm.php">
                     <div class="field input">
                         <label for="admid">Admin ID </label>
                         <input type="text" name="admid" id="admid" autocomplete="off" required>
@@ -58,11 +58,11 @@
                     </div>
 
                     <div class="field">
-                        <input type="submit" class="btn" name="submit" href="loginAdm.php" value="Sign Up" required>
+                        <input type="submit" class="btn" name="submit" href="../../pages/admin/loginAdm.php" value="Sign Up" required>
                     </div>
                 </form>
                 <div class="links">
-                    Already a member? <a href="loginAdm.php">Login</a>
+                    Already a member? <a href="../../pages/admin/loginAdm.php">Login</a>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include ('../../config/config.php');
 
 // Check if the employee ID is stored in session
 if (isset($_SESSION['empid'])) {
@@ -48,7 +48,7 @@ if (isset($_SESSION['empid'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="../../css/style2.css">
     <title>Employee Update</title>
     <style>
         /* Basic reset */
@@ -217,17 +217,17 @@ if (isset($_SESSION['empid'])) {
     <div class="banner">
         <h1>Employee</h1>
         <div class="navbar">
-            <img class="logo" src="logo.png" alt="Logo">
+            <img class="logo" src="../../pictures/logoParcel.png" alt="Logo">
             <ul>
                 <button type="button">UPDATE</button>
                 <button type="button">REMOVE</button>
                 <button type="button">SEARCH</button>
                 <button type="button">VIEWING</button>
-                <img class="image" src="home.png" alt="Home">
+                <img class="image" src="../../pictures/home.png" alt="Home">
             </ul>
         </div>
         <div class="form-container">
-            <form action="employeeupdate.php" method="post" class="form-grid">
+            <form action="../../pages/employee/employeeupdate.php" method="post" class="form-grid">
                 <div class="input-group">
                     <input type="text" name="parcelid" required>
                     <label for="parcelid">Parcel ID :</label>

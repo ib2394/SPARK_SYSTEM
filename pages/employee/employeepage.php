@@ -1,5 +1,5 @@
 <?php
-    include('config.php');
+    include ('../../config/config.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,19 +85,19 @@
         EMPLOYEE
     </div>
     <div class="navbar">
-        <img class="logo" src="logo.png" alt="Logo">
+        <img class="logo" src="../../pictures/logoParcel.png" alt="Logo">
         <ul>
-            <li><a href="employeeupdate.php"><button type="button">UPDATE</button></a></li>
+            <li><a href="../../pages/employee/employeeupdate.php"><button type="button">UPDATE</button></a></li>
             <button type="button">REMOVE</button>
             <button type="button">SEARCH</button>
             <button type="button">VIEWING</button>
-            <img class="image" src="home.png" alt="Home">
+            <img class="image" src="../../pictures/home.png" alt="Home">
         </ul>
     </div>
     <div class="content">
         <h1>WELCOME TO EMPLOYEE PAGE</h1>
         <div class="icon">
-            <img src="employee icon.png" alt="Employee Icon">
+            <img src="../../pictures/employee icon.png" alt="Employee Icon">
         </div>
     </div>
 </body>

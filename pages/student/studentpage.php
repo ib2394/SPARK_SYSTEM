@@ -1,5 +1,5 @@
 <?php
-    include('config.php');
+    include ('../../config/config.php');
 ?>
 
 <!DOCTYPE html>
@@ -95,21 +95,26 @@
         STUDENT
     </div>
     <div class="navbar">
-        <img class="logo" src="logo.png" alt="Logo">
+        <img class="logo" src="../../pictures/logoParcel.png" alt="Logo">
         <ul>
-            <li><a href="studentinsert.php"><button type="button">INSERT</button></a></li>
-            <li><a href="studentupdate.php"><button type="button">UPDATE</button></a></li>
+            <li><a href="../../pages/student/studentinsert.php"><button type="button">INSERT</button></a></li>
+            <li><a href="../../pages/student/studentupdate.php"><button type="button">UPDATE</button></a></li>
             <li><button type="button">REMOVE</button></li>
             <li><button type="button">SEARCH</button></li>
             <li><button type="button">VIEWING</button></li>
         </ul>
-        <img class="image" src="home.png" alt="Home">
+        <img class="image" src="../../pictures/home.png" alt="Home">
     </div>
     <div class="content">
         <h1>WELCOME TO STUDENT PAGE</h1>
         <div class="icon">
-            <img src="student icon.png" alt="Student Icon">
+            <img src="../../pictures/student icon.png" alt="Student Icon">
         </div>
+    </div>
+    <div class="logout-button">
+    <form action="../../pages/other/mainPage.php" method="post">
+        <button type="submit">Logout</button>
+    </form>
     </div>
 </body>
 </html>
