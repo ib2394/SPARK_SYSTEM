@@ -113,19 +113,30 @@
     <div class="navbar">
         <img class="logo" src="../../pictures/logoParcel.png" alt="Logo">
         <ul>
-        <li><a href="../../pages/admin/adminupdate.php">
+            <li><a href="../../pages/admin/adminupdate.php">
             <button type="button">UPDATE</button></a></li>
-            <button type="button">REMOVE</button>
-            <button type="../../pages/admin/search.php">SEARCH</button>
-            <button type="button">VIEWING</button>
-            <img class="image" src="../pictures/home.png" alt="Home">
+
+            <li><a href="#">
+            <button type="button">REMOVE</button></a></li>
+
+            <li><a href="../../pages/admin/admSearch.php">
+            <button type="button">SEARCH</button></a></li>
+
+            <li><a href="#">
+            <button type="button">VIEWING</button></a></li>
+
+            <a href="../../pages/admin/adminpage.php" class="role">
+                <img class="image" src="../pictures/home.png" alt="Home">
+            </a>
         </ul>
     </div>
+
     <div class="content">
         <h1>WELCOME TO ADMIN PAGE</h1>
         <div class="icon">
             <img src="../../pictures/admin icon.png" alt="Admin Icon">
         </div>
     </div>
+</div>
 </body>
 </html>

@@ -217,10 +217,17 @@ if (isset($_SESSION['adminid'])) {
         <div class="navbar">
             <img class="logo" src="../../pictures/logo.png" alt="Logo">
             <ul>
-            <li><a href="../../pages/admin/adminupdate.php"><button type="button">UPDATE</button></a></li>
-                <button type="button">REMOVE</button>
-                <button type="button">SEARCH</button>
-                <button type="button">VIEWING</button>
+                <li><a href="../../pages/admin/adminupdate.php">
+                <button type="button">UPDATE</button></a></li>
+
+                <li><a href="#">
+                <button type="button">REMOVE</button></a></li>
+
+                <li><a href="../../pages/admin/admSearch.php">
+                <button type="button">SEARCH</button></a></li>
+
+                <li><a href="#">
+                <button type="button">VIEWING</button></a></li>
                 <img class="image" src="../../pictures/home.png" alt="Home">
             </ul>
         </div>
