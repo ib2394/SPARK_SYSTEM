@@ -113,7 +113,8 @@
     <div class="navbar">
         <img class="logo" src="../../pictures/logoParcel.png" alt="Logo">
         <ul>
-        <li><a href="../../pages/admin/adminupdate.php"><button type="button">UPDATE</button></a></li>
+        <li><a href="../../pages/admin/adminupdate.php">
+            <button type="button">UPDATE</button></a></li>
             <button type="button">REMOVE</button>
             <button type="../../pages/admin/search.php">SEARCH</button>
             <button type="button">VIEWING</button>

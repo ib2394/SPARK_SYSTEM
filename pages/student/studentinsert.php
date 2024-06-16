@@ -52,13 +52,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $stmt_check_payment->close();
 
     // Insert the data into the parcel table with the associated studid
-    $stmt_insert_parcel = $con->prepare("INSERT INTO parcel (parcelid, courname, payid, studid) VALUES (?, ?, ?, ?)");
+    $stmt_insert_parcel = $con->prepare("INSERT INTO parcel (parcelid, courname, studid, payid) VALUES (?, ?, ?, ?)");
     if ($stmt_insert_parcel === false) {
-        die('Prepare failed: ' . htmlspecialchars($con->error));
+        die('Prepare failed: ' .htmlspecialchars($con->error));
     }
 
     // Bind parameters and execute the statement
-    $stmt_insert_parcel->bind_param("ssss", $parcelid, $courname, $payid, $studid);
+    $stmt_insert_parcel->bind_param("ssss", $parcelid, $courname, $studid, $payid);
     $stmt_insert_parcel->execute();
     $stmt_insert_parcel->close();
 
