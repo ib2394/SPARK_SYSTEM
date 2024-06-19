@@ -1,35 +1,100 @@
 <?php
-session_start();
-include ('../../config/config.php');
+/* include db connection file syaaaa */
+include '../../config/config.php';
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $Adminid = $_POST['adminid'];
+if(isset($_POST['submit'])){
+    /* capture values from HTML form */
+    $AdmUsername = $_POST['admUsername'];
     $Admpass = $_POST['admpass'];
     $Admname = $_POST['admname'];
     $Admphone = $_POST['admphone'];
 
-    // Check if the file upload is successful
-    if (isset($_FILES['admPic']) && $_FILES['admPic']['error'] === UPLOAD_ERR_OK) {
-        $admPic = $_FILES['admPic']['name'];
-        $target = "../../pictures/". basename($admPic);
+    /* execute SQL SELECT command */
+    $sql = "SELECT admUsername FROM admin WHERE admUsername = '$AdmUsername'";
+    echo $sql;
+    $query = mysqli_query($con, $sql);
 
-        // Move the uploaded file to the target directory
-        if (move_uploaded_file($_FILES['admPic']['tmp_name'], $target)) {
-            // Now you can use the file information safely
-            $query = "insert into admin (adminid, admpass, admname, admphone, admPic) values (?,?,?,?,?)";
-            $stmt = $con->prepare($query);
-            $stmt->bind_param("sssss", $Adminid, $Admpass, $Admname, $Admphone, $admPic);
-            $stmt->execute();
-            echo "<script>alert('REGISTRATION SUCCESSFULLY')</script>";
-            $stmt->close();
+    if (!$query) {
+        die("Error: " . mysqli_error($con));
+    }
+
+    $row = mysqli_num_rows($query);
+
+    if($row != 0){
+        echo "<script>alert('The username is already existed'); 
+                window.location.href = 'signupAdm.php';
+                </script>";
+            exit();
+    }
+    else{
+        /* execute SQL INSERT commands */
+        $sql2 = "INSERT INTO admin (admUsername, admpass, admname, admphone) VALUES ('$AdmUsername','$Admpass', '$Admname', '$Admphone')";
+
+        if (mysqli_query($con, $sql2)) {
+            echo "<script>alert('Succesfully registered!'); 
+                window.location.href = 'loginAdm.php';
+                </script>";
+            exit();
         } else {
-            echo "<script>alert('Sorry, Registeration Unsuccessfully. Failed to upload profile picture.')</script>";
+            echo "Error: " . mysqli_error($con);
         }
-    } else {
-        echo "<script>alert('Sorry, Registeration Unsuccessfully. File upload error.')</script>";
     }
 }
+
+/* close db connection */
+mysqli_close($con);
+
+// create new user id
+function createUserId(){
+    include '../../config/config.php';
+
+    // Find the highest current user ID
+    $sqlSelectMaxId = "SELECT admUsername FROM admin ORDER BY admUsername DESC LIMIT 1";
+    $result = mysqli_query($con, $sqlSelectMaxId);
+    if (!$result) {
+        die("Error: " . mysqli_error($con));
+    }
+
+    $row = mysqli_fetch_assoc($result);
+    $lastId = $row['admUsername'];
+    
+    // Extract the numeric part, increment it, and create the new ID
+    $numericPart = intval(substr($lastId, 1)); // assuming the prefix "U" is always 1 character
+    $newNumericPart = $numericPart + 1;
+    if ($newNumericPart < 10) {
+        $newUserId = 'U0' . $newNumericPart;
+    } else {
+        $newUserId = 'U' . $newNumericPart;
+    }
+    return $newUserId;
+}
+
+// create new user details id
+function createUserDetailsId(){
+    include '../../config/config.php';
+
+    // Find the highest current user details ID
+    $sqlSelectMaxId = "SELECT admUsername FROM parcel ORDER BY parcelid DESC LIMIT 1";
+    $result = mysqli_query($con, $sqlSelectMaxId);
+    if (!$result) {
+        die("Error: " . mysqli_error($con));
+    }
+
+    $row = mysqli_fetch_assoc($result);
+    $lastId = $row['admUsername'];
+    
+    // Extract the numeric part, increment it, and create the new ID
+    $numericPart = intval(substr($lastId, 2)); // assuming the prefix "UD" is always 2 characters
+    $newNumericPart = $numericPart + 1;
+    if ($newNumericPart < 10) {
+        $newUserId = 'UD0' . $newNumericPart;
+    } else {
+        $newUserId = 'UD' . $newNumericPart;
+    }
+    return $newUserId;
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,9 +110,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <div class="box form-box">
             <header>Sign Up</header>
             <form name="spark_system" method="post" action="../../pages/admin/signupAdm.php" enctype="multipart/form-data">
+
                 <div class="field input">
-                    <label for="admid">Admin ID </label>
-                    <input type="text" name="adminid" id="adminid" autocomplete="off" required>
+                    <label for="admUsername">Username</label>
+                    <input type="text" name="admUsername" autocomplete="off" required>
                 </div>
 
                 <div class="field input">
@@ -56,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </div>
 
                 <div class="field input">
-                    <label for="admname">Name</label>
+                    <label for="admname">Full Name</label>
                     <input type="text" name="admname" autocomplete="off" required>
                 </div>
 
@@ -65,10 +131,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <input type="text" name="admphone" autocomplete="off" required>
                 </div>
 
-                <div class="field input">
+                <!-- <div class="field input">
                     <label for="admPic">Profile Picture</label>
                     <input type="file" name="admPic" id="admPic" accept="image/*">
-                </div>
+                </div> -->
 
                 <div class="field">
                     <input type="submit" class="btn" name="submit" value="Sign Up" required>

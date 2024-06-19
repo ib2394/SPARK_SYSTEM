@@ -3,14 +3,14 @@ session_start();
 include ('../../config/config.php');
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $adminid = $_POST['adminid'];
+    $AdmUsername = $_POST['admUsername'];
     $admpass = $_POST['admpass'];
 
     // Basic validation
-    if (!empty($adminid) && !empty($admpass) && !is_numeric($adminid)) {
+    if (!empty($AdmUsername) && !empty($admpass) && !is_numeric($AdmUsername)) {
         // Prepare the SQL statement to prevent SQL injection
-        $stmt = $con->prepare("SELECT * FROM admin WHERE adminid = ? LIMIT 1");
-        $stmt->bind_param("s", $adminid);
+        $stmt = $con->prepare("SELECT * FROM admin WHERE admUsername = ? LIMIT 1");
+        $stmt->bind_param("s", $AdmUsername);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 // Verify the password
                 if ($user_data['admpass'] == $admpass) {
                     // Set session variable for adminid
-                    $_SESSION['adminid'] = $user_data['adminid'];
+                    $_SESSION['admUsername'] = $user_data['admUsername'];
 
                     // Redirect to admin page
                     header("Location: adminpage.php");
@@ -55,8 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <form action="../../pages/admin/loginAdm.php" method="POST">
                     
                     <div class="field input">
-                        <label>Admin ID </label>
-                        <input type="text" name="adminid" required>
+                        <label>Username </label>
+                        <input type="text" name="admUsername" required>
                     </div>
 
                     <div class="field input">
