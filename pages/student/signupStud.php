@@ -1,30 +1,101 @@
+
 <?php
-    session_start();
+/* include db connection file syaaaa */
+include '../../config/config.php';
 
-    include ('../../config/config.php');
+if(isset($_POST['submit'])){
+    /* capture values from HTML form */
+    $studUsername = $_POST['studUsername'];
+    $studpass = $_POST['studpass'];
+    $studname = $_POST['studname'];
+    $studaddress = $_POST['studaddress'];
+    $email = $_POST['email'];
+    $studphone = $_POST['studphone'];
 
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        $Studid = $_POST['studid'];
-        $Studpass = $_POST['studpass'];
-        $Studname = $_POST['studname'];
-        $Studaddress = $_POST['studaddress'];
-        $Email = $_POST['email'];
-        $Studphone = $_POST['studphone'];
+    /* execute SQL SELECT command */
+    $sql = "SELECT studUsername FROM student WHERE studUsername = '$studUsername'";
+    echo $sql;
+    $query = mysqli_query($con, $sql);
 
-        if(!empty($Studid) && !empty($Studpass) && !is_numeric($Studid)){
-            $query = "insert into student (studid, studpass, studname, studaddress, email, studphone) values ('$Studid', '$Studpass', '$Studname', '$Studaddress', '$Email', '$Studphone')";
+    if (!$query) {
+        die("Error: " . mysqli_error($con));
+    }
 
-            mysqli_query($con, $query);
+    $row = mysqli_num_rows($query);
 
-            echo "<script>alert('REGISTRATION SUCCESSFULLY')</script>";
+    if($row != 0){
+        echo "<script>alert('The username is already existed'); 
+                window.location.href = 'signupStud.php';
+                </script>";
+            exit();
+    }
+    else{
+        /* execute SQL INSERT commands */
+        $sql2 = "INSERT INTO student (studUsername, studpass, studname, studaddress, email, studphone) VALUES ('$studUsername','$studpass', '$studname', '$studaddress', '$email','$studphone')";
 
-        }
-        else{
-            echo "<script>alert('SORRY, REGISTRATION UNSUCCESSFULLY')</script>";
+        if (mysqli_query($con, $sql2)) {
+            echo "<script>alert('Succesfully registered!'); 
+                window.location.href = 'loginStud.php';
+                </script>";
+            exit();
+        } else {
+            echo "Error: " . mysqli_error($con);
         }
     }
-?>
+}
+/* close db connection */
+mysqli_close($con);
 
+// create new user id
+function createUserId(){
+    include '../../config/config.php';
+
+    // Find the highest current user ID
+    $sqlSelectMaxId = "SELECT studUsername FROM student ORDER BY studUsername DESC LIMIT 1";
+    $result = mysqli_query($con, $sqlSelectMaxId);
+    if (!$result) {
+        die("Error: " . mysqli_error($con));
+    }
+
+    $row = mysqli_fetch_assoc($result);
+    $lastId = $row['studUsername'];
+    
+    // Extract the numeric part, increment it, and create the new ID
+    $numericPart = intval(substr($lastId, 1)); // assuming the prefix "U" is always 1 character
+    $newNumericPart = $numericPart + 1;
+    if ($newNumericPart < 10) {
+        $newUserId = 'U0' . $newNumericPart;
+    } else {
+        $newUserId = 'U' . $newNumericPart;
+    }
+    return $newUserId;
+}
+
+// create new user details id
+function createUserDetailsId(){
+    include '../../config/config.php';
+
+    // Find the highest current user details ID
+    $sqlSelectMaxId = "SELECT studUsername FROM parcel ORDER BY parcelid DESC LIMIT 1";
+    $result = mysqli_query($con, $sqlSelectMaxId);
+    if (!$result) {
+        die("Error: " . mysqli_error($con));
+    }
+
+    $row = mysqli_fetch_assoc($result);
+    $lastId = $row['studUsername'];
+    
+    // Extract the numeric part, increment it, and create the new ID
+    $numericPart = intval(substr($lastId, 2)); // assuming the prefix "UD" is always 2 characters
+    $newNumericPart = $numericPart + 1;
+    if ($newNumericPart < 10) {
+        $newUserId = 'UD0' . $newNumericPart;
+    } else {
+        $newUserId = 'UD' . $newNumericPart;
+    }
+    return $newUserId;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,8 +112,8 @@
                 <header>Sign Up</header>
                 <form name="spark_system" method="post" action="../../pages/student/signupStud.php">
                     <div class="field input">
-                        <label for="studid">Student ID </label>
-                        <input type="text" name="studid" utocomplete="off" required>
+                        <label for="studUsername">Username </label>
+                        <input type="text" name="studUsername" utocomplete="off" required>
                     </div>
 
                     <div class="field input">

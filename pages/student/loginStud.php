@@ -4,19 +4,19 @@
     include ('../../config/config.php');
 
     if($_SERVER['REQUEST_METHOD'] == "POST"){
-        $Studid = $_POST['studid'];
-        $Studpass = $_POST['studpass'];
+        $studUsername = $_POST['studUsername'];
+        $studpass = $_POST['studpass'];
 
-        if(!empty($Studid) && !empty($Studpass) && !is_numeric($Studid)){
-            $query="select * from student where studid='$Studid' limit 1";
+        if(!empty($studUsername) && !empty($studpass) && !is_numeric($studUsername)){
+            $query="select * from student where studUsername='$studUsername' limit 1";
             $result=mysqli_query($con, $query);
 
             if($result){
                 if($result && mysqli_num_rows($result)>0){
                     $user_data=mysqli_fetch_assoc($result);
 
-                    if ($user_data['studpass'] == $Studpass) {
-                        $_SESSION['studid'] = $user_data['studid'];  // Store studid in session
+                    if ($user_data['studpass'] == $studpass) {
+                        $_SESSION['studUsername'] = $user_data['studUsername'];  // Store studid in session
                         header("location: studentpage.php");  // Redirect to student page
                         die;
                     }
@@ -47,8 +47,8 @@
                 <form action="../../pages/student/loginStud.php" method="POST">
                     
                     <div class="field input">
-                        <label>Student ID </label>
-                        <input type="text" name="studid" required>
+                        <label>Username </label>
+                        <input type="text" name="studUsername" required>
                     </div>
 
                     <div class="field input">

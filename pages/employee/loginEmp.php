@@ -4,13 +4,13 @@ session_start();
 include ('../../config/config.php');
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-    $empid = $_POST['empid'];
+    $empUsername = $_POST['empUsername'];
     $emppass = $_POST['emppass'];
 
-    if(!empty($empid) && !empty($emppass) && !is_numeric($empid)){
-        $query = "SELECT * FROM employee WHERE empid = ? LIMIT 1";
+    if(!empty($empUsername) && !empty($emppass) && !is_numeric($empUsername)){
+        $query = "SELECT * FROM employee WHERE empUsername = ? LIMIT 1";
         $stmt = $con->prepare($query);
-        $stmt->bind_param("s", $empid);
+        $stmt->bind_param("s", $empUsername);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
             if($user_data['emppass'] == $emppass){
                 // Set the session variable
-                $_SESSION['empid'] = $user_data['empid'];
+                $_SESSION['empUsername'] = $user_data['empUsername'];
                 header("Location: employeepage.php");
                 die;
             }
@@ -47,8 +47,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 <form action="../../pages/employee/loginEmp.php" method="POST">
 
                     <div class="field input">
-                        <label>Employee ID </label>
-                        <input type="text" name="empid" required>
+                        <label>Username </label>
+                        <input type="text" name="empUsername" required>
                     </div>
 
                     <div class="field input">
